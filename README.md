@@ -37,7 +37,7 @@ This Node.js project connects to an MQTT broker, captures data from specific top
 
 ## Project Structure
 ```plaintext
-- IOT/
+- mqtt-mongo/
   |- mqtt/
      |- mqttClient.js
   |- mongodb/
