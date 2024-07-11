@@ -10,6 +10,8 @@ This Node.js project connects to an MQTT broker, captures data from specific top
 - Docker (optional)
 - Docker Compose (optional)
 
+If you are going to run the project with Docker, it is not necessary to install Node.js and MongoDB, the containers already use images with the necessary installations.
+
 ## Clone
 
 1. Clone the repository:
