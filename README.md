@@ -74,7 +74,11 @@ sudo docker-compose -p telemetry up -d
 
 You can access the application documentation by going to: localhost:3001/api-docs
 
+![API Doc with Swagger](images/doc.png)
+
 You can connect to the database (e.g. with NoSQL Booster) at the following address: localhost:27018
+
+![NoSQL Booster for MongoDB](images/db.png)
 
 To stop the project, run:
 
