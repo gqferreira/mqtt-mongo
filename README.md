@@ -8,32 +8,38 @@ This Node.js project connects to an MQTT broker, captures data from specific top
 - MongoDB (v7 or higher)
 - MQTT Broker (such as Mosquitto)
 
-## Installation
+## Clone
 
 1. Clone the repository:
 
-    ```bash
-    git clone https://github.com/gqferreira/mqtt-mongo.git
-    cd mqtt-mongodb
-    ```
+ ```bash
+ git clone https://github.com/gqferreira/mqtt-mongo.git
+ cd mqtt-mongodb
+ ```
 
-2. Install dependencies:
+1. Install dependencies (only if you intend to run without Docker):
 
-    ```bash
-    npm install
-    ```
+ ```bash
+ npm install
+ ```
 
-3. Configure environment variables by creating a `.env` file in the root of the project with the following content:
+1. Configure environment variables by creating a `.env` file in the root of the project with the following content:
 
-    ```ini
-    MQTT_URL=mqtt://test.mosquitto.org
-    MQTT_PORT=1883
-    MQTT_TOPIC=mqtt-mongo
-    MQTT_USERNAME=
-    MQTT_PASSWORD=
-    MONGODB_URI=mongodb://db-telemetry:27017
-    MONGODB_DB=iot
-    ```
+ ```ini
+ MQTT_URL=mqtt://test.mosquitto.org
+ MQTT_PORT=1883
+ MQTT_TOPIC=mqtt-mongo
+ MQTT_USERNAME=
+ MQTT_PASSWORD=
+ MONGODB_URI=mongodb://db-telemetry:27017
+ MONGODB_DB=iot
+ ```
+
+1. Run project (only if you intend to run without Docker):
+
+```bash
+npm run dev
+```
 
 ## Project Structure
 ```plaintext
@@ -58,12 +64,12 @@ This Node.js project connects to an MQTT broker, captures data from specific top
   
 ```
 
-## Usage
+## Usage with Docker
 
 To start the project, run:
 
 ```bash
-docker-compose -p telemetry up -d
+sudo docker-compose -p telemetry up -d
 ```
 
 You can access the application documentation by going to: localhost:3001/api-docs
@@ -73,12 +79,25 @@ You can connect to the database (e.g. with NoSQL Booster) at the following addre
 To stop the project, run:
 
 ```bash
-docker-compose -p telemetry down
+sudo docker-compose -p telemetry down
 ```
 
 To rebuild after changes (need start again after):
 ```bash
-docker-compose -p telemetry build
+sudo docker-compose -p telemetry build
+```
+
+If you wish, you can access the application container in interactive mode and use PM2 to monitor the application logs:
+```bash
+docker exec -it app-telemetry bash
+pm2 monit
+```
+
+If you wish, you can access the database container in interactive mode and use mongosh to query the collections documents.
+```bash
+docker exec -it db-telemetry bash
+mongosh
+use iot
 ```
 
 ## Database:
