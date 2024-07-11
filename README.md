@@ -7,6 +7,8 @@ This Node.js project connects to an MQTT broker, captures data from specific top
 - Node.js (v20 or higher)
 - MongoDB (v7 or higher)
 - MQTT Broker (such as Mosquitto)
+- Docker (optional)
+- Docker Compose (optional)
 
 ## Clone
 
@@ -72,13 +74,20 @@ To start the project, run:
 sudo docker-compose -p telemetry up -d
 ```
 
-You can access the application documentation by going to: localhost:3001/api-docs
+You can access the API documentation and interact with it through the following address: `localhost:3001/api-docs`
 
 ![API Doc with Swagger](images/doc.png)
 
-You can connect to the database (e.g. with NoSQL Booster) at the following address: localhost:27018
+> ⚠️ **Warning:** Before you can send messages to the brocker intended for a certain channel, you first need to use the API endpoint to create a device with that channel.
+
+You can connect to the database (e.g. with NoSQL Booster) at the following address: `localhost:27018`
 
 ![NoSQL Booster for MongoDB](images/db.png)
+
+If you want to test and don't have an IoT device, you can use the MQTTX app to create a connection to the Mosquitto test brocker and send messages to the channel registered to your device.
+
+![Creating a connection on MQTTX](images/mqttx-connection.png)
+![Sending messages on MQTTX](images/mqttx-messages.png)
 
 To stop the project, run:
 
