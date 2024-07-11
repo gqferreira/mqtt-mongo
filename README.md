@@ -82,7 +82,7 @@ To stop the project, run:
 sudo docker-compose -p telemetry down
 ```
 
-To rebuild after changes (need start again after):
+To rebuild after changes if you change Dockerfile (need start again after):
 ```bash
 sudo docker-compose -p telemetry build
 ```
