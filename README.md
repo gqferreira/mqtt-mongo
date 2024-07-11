@@ -13,8 +13,8 @@ This Node.js project connects to an MQTT broker, captures data from specific top
 1. Clone the repository:
 
     ```bash
-    git clone https://github.com/seu-usuario/mqtt-to-mongodb.git
-    cd mqtt-to-mongodb
+    git clone https://github.com/gqferreira/mqtt-mongo.git
+    cd mqtt-mongodb
     ```
 
 2. Install dependencies:
@@ -26,11 +26,11 @@ This Node.js project connects to an MQTT broker, captures data from specific top
 3. Configure environment variables by creating a `.env` file in the root of the project with the following content:
 
     ```ini
-    MQTT_URL=mqtt://mqtt.pombiano.com.br
+    MQTT_URL=mqtt://test.mosquitto.org
     MQTT_PORT=1883
-    MQTT_TOPIC=FATEC
-    MQTT_USERNAME=fatec
-    MQTT_PASSWORD=quinto2024
+    MQTT_TOPIC=mqtt-mongo
+    MQTT_USERNAME=
+    MQTT_PASSWORD=
     MONGODB_URI=mongodb://db-telemetry:27017
     MONGODB_DB=iot
     ```
@@ -45,13 +45,17 @@ This Node.js project connects to an MQTT broker, captures data from specific top
   |- routes/
      |- telemetryRoutes.js
      |- deviceRoutes.js
+  |- .env
+  |- .gitignore
   |- app.js
-  |- swagger.js
   |- config.js
-  |- Dockerfile
   |- docker-compose.yml
+  |- Dockerfile
+  |- LICENCE
+  |- package-lock.json
   |- package.json
-  |- package-log.json
+  |- swagger.js
+  
 ```
 
 ## Usage
@@ -100,7 +104,7 @@ db.telemetry.insertOne(
 ```javascript
 db.device.insertOne(
     {
-        "channel": 'FATEC',
+        "channel": 'mqtt-mongo',
         "description": 'Environmental light and temperature monitoring system',
         "status": true
     }

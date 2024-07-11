@@ -47,7 +47,7 @@ const { listTelemetry } = require('../mongodb/mongoClient');
  *                     example: 22.5
  *                   channel:
  *                     type: string
- *                     example: "FATEC"
+ *                     example: "mqtt-mongo"
  *                   description:
  *                     type: string
  *                     example: "ESP32 with light and temperature sensor"
@@ -94,7 +94,7 @@ router.get('/:channel', async (req, res) => {
  *                     example: 22.5
  *                   channel:
  *                     type: string
- *                     example: "FATEC"
+ *                     example: "mqtt-mongo"
  *                   description:
  *                     type: string
  *                     example: "ESP32 with light and temperature sensor"

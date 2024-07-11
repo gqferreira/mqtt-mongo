@@ -29,7 +29,7 @@ const { insertDevice } = require('../mongodb/mongoClient');
  *             properties:
  *               channel:
  *                 type: string
- *                 example: "FATEC"
+ *                 example: "mqtt-mongo"
  *               description:
  *                 type: string
  *                 example: "ESP32 with light and temperature sensor"
