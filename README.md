@@ -1,2 +1,108 @@
-# mqtt-mongo
-Project of a Node.js server capable of connecting to an MQTT brocker to retrieve telemetry sent by IoT devices and save it in a MongoDB database, all in a Docker container.
+# MQTT with MongoDB
+
+This Node.js project connects to an MQTT broker, captures data from specific topics, and saves it into a MongoDB database. The Node.js project also provides API endpoints for specific queries. This project use Docker container.
+
+## Prerequisites
+
+- Node.js (v20 or higher)
+- MongoDB (v7 or higher)
+- MQTT Broker (such as Mosquitto)
+
+## Installation
+
+1. Clone the repository:
+
+    ```bash
+    git clone https://github.com/seu-usuario/mqtt-to-mongodb.git
+    cd mqtt-to-mongodb
+    ```
+
+2. Install dependencies:
+
+    ```bash
+    npm install
+    ```
+
+3. Configure environment variables by creating a `.env` file in the root of the project with the following content:
+
+    ```ini
+    MQTT_URL=mqtt://mqtt.pombiano.com.br
+    MQTT_PORT=1883
+    MQTT_TOPIC=FATEC
+    MQTT_USERNAME=fatec
+    MQTT_PASSWORD=quinto2024
+    MONGODB_URI=mongodb://db-telemetry:27017
+    MONGODB_DB=iot
+    ```
+
+## Project Structure
+```plaintext
+- IOT/
+  |- mqtt/
+     |- mqttClient.js
+  |- mongodb/
+     |- mongoClient.js
+  |- routes/
+     |- telemetryRoutes.js
+     |- deviceRoutes.js
+  |- app.js
+  |- swagger.js
+  |- config.js
+  |- Dockerfile
+  |- docker-compose.yml
+  |- package.json
+  |- package-log.json
+```
+
+## Usage
+
+To start the project, run:
+
+```bash
+docker-compose -p telemetry up -d
+```
+
+You can access the application documentation by going to: localhost:3001/api-docs
+
+You can connect to the database (e.g. with NoSQL Booster) at the following address: localhost:27018
+
+To stop the project, run:
+
+```bash
+docker-compose -p telemetry down
+```
+
+To rebuild after changes (need start again after):
+```bash
+docker-compose -p telemetry build
+```
+
+## Database:
+
+The telemetry collection in the database should be named `telemetry` and have the following structure:
+```javascript
+use iot
+
+db.telemetry.insertOne(
+    {
+        "date": ISODate('2024-06-12T10:09:00Z'),
+        "light": 3500,
+        "temperature": 1900,
+        "device": {
+            "$ref": "device",
+            "$id": ObjectId("000000000000000000000001"),
+            "$db": "iot"
+        }
+    }
+);
+```
+
+```javascript
+db.device.insertOne(
+    {
+        "channel": 'FATEC',
+        "description": 'Environmental light and temperature monitoring system',
+        "status": true
+    }
+);
+```
