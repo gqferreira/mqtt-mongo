@@ -18,7 +18,7 @@ If you are going to run the project with Docker, it is not necessary to install 
 
  ```bash
  git clone https://github.com/gqferreira/mqtt-mongo.git
- cd mqtt-mongodb
+ cd mqtt-mongo
  ```
 
 1. Install dependencies (only if you intend to run without Docker):
@@ -76,13 +76,13 @@ To start the project, run:
 sudo docker-compose -p telemetry up -d
 ```
 
-You can access the API documentation and interact with it through the following address: `localhost:3001/api-docs`
+If you are running docker compose on a personal computer locally, you can access the API documentation and interact with it through the following address: `localhost:3001/api-docs`. If you are running on a server, you must use the IP to access and perform the necessary firewall configurations.
 
 ![API Doc with Swagger](images/doc.png)
 
 > ⚠️ **Warning:** Before you can send messages to the brocker intended for a certain channel, you first need to use the API endpoint to create a device with that channel.
 
-You can connect to the database (e.g. with NoSQL Booster) at the following address: `localhost:27018`
+If you are running docker compose on a personal computer locally, you can connect to the database (e.g. with NoSQL Booster) at the following address: `localhost:27018`. If you are running on a server, you must use the IP to access and perform the necessary firewall configurations.
 
 ![NoSQL Booster for MongoDB](images/db.png)
 
